@@ -373,14 +373,15 @@
 
   /* Popup image at top */
   .popup-img {
-    width: 100%; height: 220px;
-    background: var(--gray-100);
+    width: 100%; height: 260px;
     display: flex; align-items: center; justify-content: center;
     overflow: hidden; position: relative;
   }
   .popup-img img {
-    width: 100%; height: 100%; object-fit: contain; object-position: center;
-    display: block; background: var(--gray-100);
+    width: 100%; height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    display: block;
   }
   .popup-img img.hide { display: none; }
   .popup-img-placeholder {
@@ -682,7 +683,7 @@ function openPopup(e, id) {
   // Show image in popup
   const img = document.getElementById('popupImg');
   const placeholder = document.getElementById('popupImgPlaceholder');
-  img.src = `images/${p.id}.jpg`;
+  img.src = `images/${p.id}-popup.jpg`;
   img.classList.remove('hide');
   placeholder.style.display = 'none';
   img.onerror = () => { img.classList.add('hide'); placeholder.style.display = 'flex'; };
@@ -795,7 +796,7 @@ function submitOrder() {
     timestamp: new Date().toLocaleString('en-BD', { timeZone: 'Asia/Dhaka' })
   };
 
-  const params = new URLSearchParams({ name, phone, district: selectedDistrict, p1: p1name, p2: p2name });
+  const params = new URLSearchParams({ name, phone, district: selectedDistrict, p1: p1name, p2: p2name, delivery: delivery, total: total });
 
   if (SCRIPT_URL === 'YOUR_GOOGLE_APPS_SCRIPT_URL_HERE') { window.location.href = 'thankyou.html?' + params.toString(); return; }
 
