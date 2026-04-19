@@ -196,9 +196,12 @@
     </div>
 
     <hr class="summary-divider">
+    <div class="summary-row"><span class="label">Perfumes</span><span>Tk 1,390</span></div>
+    <div class="summary-row" id="sumDeliveryRow" style="display:none"><span class="label">Delivery</span><span id="sumDelivery">—</span></div>
+    <hr class="summary-divider">
     <div class="summary-total">
-      <span>Total</span>
-      <span>৳১,৩৯০ + delivery</span>
+      <span>Total (Cash on Delivery)</span>
+      <span id="sumTotal" style="font-family:var(--sans);font-weight:500;">—</span>
     </div>
   </div>
 
@@ -213,6 +216,16 @@
   set('sumDistrict', params.get('district'));
   set('sumP1', params.get('p1'));
   set('sumP2', params.get('p2'));
+
+  const delivery = parseInt(params.get('delivery'));
+  const total    = parseInt(params.get('total'));
+  if (!isNaN(delivery) && !isNaN(total)) {
+    document.getElementById('sumDeliveryRow').style.display = 'flex';
+    document.getElementById('sumDelivery').textContent = 'Tk ' + delivery;
+    document.getElementById('sumTotal').textContent    = 'Tk ' + total.toLocaleString();
+  } else {
+    document.getElementById('sumTotal').textContent = 'Tk 1,390 + delivery';
+  }
 </script>
 </body>
 </html>
