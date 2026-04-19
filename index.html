@@ -203,16 +203,17 @@
   .pcard.selected .pcard-check { display: flex; }
 
   .pcard-img {
-    background: var(--gray-100); height: 80px;
+    background: var(--gray-100); height: 130px;
     display: flex; align-items: center; justify-content: center;
-    border-radius: 9px 9px 0 0; overflow: hidden;
+    border-radius: 9px 9px 0 0; overflow: hidden; position: relative;
   }
-  .pcard-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .pcard-img img { width: 100%; height: 100%; object-fit: contain; display: block; position: absolute; inset: 0; padding: 6px; }
   .pcard-img img.hide { display: none; }
-  .bottle-icon { display: flex; flex-direction: column; align-items: center; }
+  .bottle-icon { display: flex; flex-direction: column; align-items: center; position: relative; z-index: 0; }
   .bottle-cap { width: 11px; height: 6px; background: var(--gray-400); border-radius: 2px 2px 0 0; }
   .bottle-body { width: 20px; height: 32px; background: var(--gray-400); border-radius: 2px 2px 5px 5px; }
   .pcard.selected .bottle-cap, .pcard.selected .bottle-body { background: var(--black); }
+  .pcard-img img:not(.hide) + .bottle-icon { display: none; }
 
   .pcard-body { padding: 7px 7px 24px; position: relative; }
   .pcard-name { font-size: 9.5px; font-weight: 500; color: var(--black); line-height: 1.3; }
@@ -626,7 +627,7 @@ function renderGrid() {
     div.innerHTML = `
       <div class="pcard-check"><svg viewBox="0 0 12 10" fill="none"><polyline points="1,5 4.5,8.5 11,1" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
       <div class="pcard-img">
-        <img src="images/${p.id}.jpg" alt="${p.name}" onerror="this.classList.add('hide')">
+        <img src="images/${p.id}.jpg" alt="${p.name}" onload="this.nextElementSibling.style.display='none'" onerror="this.style.display='none'">
         <div class="bottle-icon"><div class="bottle-cap"></div><div class="bottle-body"></div></div>
       </div>
       <div class="pcard-body">
