@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Thank You – Celures</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --black: #0a0a0a;
+    --white: #fafafa;
+    --gray-100: #f4f4f2;
+    --gray-200: #e8e8e4;
+    --gray-400: #b0b0a8;
+    --gray-600: #6e6e68;
+    --serif: 'Cormorant Garamond', Georgia, serif;
+    --sans: 'DM Sans', sans-serif;
+  }
+  html, body { height: 100%; }
+  body {
+    font-family: var(--sans);
+    background: var(--white);
+    color: var(--black);
+    -webkit-font-smoothing: antialiased;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+  nav {
+    border-bottom: 1px solid var(--gray-200);
+    padding: 0 20px;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .logo {
+    font-family: var(--serif);
+    font-size: 22px;
+    font-weight: 300;
+    letter-spacing: 6px;
+    color: var(--black);
+    text-transform: uppercase;
+  }
+  .page {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 24px 60px;
+    text-align: center;
+    animation: fadeIn 0.5s ease;
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .check-circle {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    border: 1.5px solid var(--black);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 24px;
+  }
+  .check-circle svg { width: 28px; height: 28px; }
+  .ty-title {
+    font-family: var(--serif);
+    font-size: 40px;
+    font-weight: 300;
+    letter-spacing: 2px;
+    color: var(--black);
+    margin-bottom: 8px;
+  }
+  .ty-sub {
+    font-size: 14px;
+    color: var(--gray-600);
+    line-height: 1.7;
+    max-width: 320px;
+    margin-bottom: 8px;
+  }
+  .ty-bangla {
+    font-size: 13px;
+    color: var(--gray-400);
+    line-height: 1.7;
+    margin-bottom: 32px;
+  }
+  .divider {
+    width: 40px;
+    height: 1px;
+    background: var(--gray-200);
+    margin: 0 auto 28px;
+  }
+  .order-summary {
+    background: var(--gray-100);
+    border-radius: 14px;
+    padding: 20px 24px;
+    width: 100%;
+    max-width: 380px;
+    text-align: left;
+    margin-bottom: 28px;
+  }
+  .summary-label {
+    font-size: 10px;
+    letter-spacing: 2.5px;
+    color: var(--gray-600);
+    text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+  .summary-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 13px;
+    color: var(--black);
+    margin-bottom: 8px;
+  }
+  .summary-row .label { color: var(--gray-600); }
+  .summary-divider {
+    border: none;
+    border-top: 1px solid var(--gray-200);
+    margin: 12px 0;
+  }
+  .summary-total {
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+    font-weight: 500;
+  }
+  .perfume-items {
+    border-top: 1px solid var(--gray-200);
+    padding-top: 12px;
+    margin-top: 4px;
+  }
+  .perfume-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    margin-bottom: 6px;
+    color: var(--black);
+  }
+  .perfume-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--black);
+    flex-shrink: 0;
+  }
+  .back-btn {
+    display: inline-block;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gray-600);
+    text-decoration: none;
+    border-bottom: 1px solid var(--gray-200);
+    padding-bottom: 2px;
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .back-btn:hover { color: var(--black); border-color: var(--black); }
+</style>
+</head>
+<body>
+<nav><div class="logo">Celures</div></nav>
+
+<div class="page">
+  <div class="check-circle">
+    <svg viewBox="0 0 28 24" fill="none">
+      <polyline points="2,12 10,20 26,2" stroke="#0a0a0a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </div>
+
+  <div class="ty-title">Thank You!</div>
+  <div class="ty-sub">Your order has been received. We'll call you shortly to confirm before dispatch.</div>
+  <div class="ty-bangla">আমরা শীঘ্রই আপনাকে কল করে অর্ডারটি নিশ্চিত করবো।</div>
+
+  <div class="divider"></div>
+
+  <div class="order-summary" id="orderSummary">
+    <div class="summary-label">Order Summary</div>
+    <div class="summary-row"><span class="label">Name</span><span id="sumName">—</span></div>
+    <div class="summary-row"><span class="label">Phone</span><span id="sumPhone">—</span></div>
+    <div class="summary-row"><span class="label">District</span><span id="sumDistrict">—</span></div>
+
+    <div class="perfume-items">
+      <div class="summary-label" style="margin-bottom:10px;">Your Fragrances</div>
+      <div class="perfume-item"><div class="perfume-dot"></div><span id="sumP1">—</span></div>
+      <div class="perfume-item"><div class="perfume-dot"></div><span id="sumP2">—</span></div>
+    </div>
+
+    <hr class="summary-divider">
+    <div class="summary-total">
+      <span>Total</span>
+      <span>৳১,৩৯০ + delivery</span>
+    </div>
+  </div>
+
+  <a href="index.html" class="back-btn">← Back to store</a>
+</div>
+
+<script>
+  const params = new URLSearchParams(window.location.search);
+  const set = (id, val) => { if(val) document.getElementById(id).textContent = val; };
+  set('sumName', params.get('name'));
+  set('sumPhone', params.get('phone'));
+  set('sumDistrict', params.get('district'));
+  set('sumP1', params.get('p1'));
+  set('sumP2', params.get('p2'));
+</script>
+</body>
+</html>
