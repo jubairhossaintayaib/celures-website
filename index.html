@@ -207,7 +207,7 @@
     display: flex; align-items: center; justify-content: center;
     border-radius: 9px 9px 0 0; overflow: hidden; position: relative;
   }
-  .pcard-img img { width: 100%; height: 100%; object-fit: contain; display: block; position: absolute; inset: 0; padding: 6px; }
+  .pcard-img img { width: 100%; height: 100%; object-fit: cover; object-position: center; display: block; position: absolute; inset: 0; }
   .pcard-img img.hide { display: none; }
   .bottle-icon { display: flex; flex-direction: column; align-items: center; position: relative; z-index: 0; }
   .bottle-cap { width: 11px; height: 6px; background: var(--gray-400); border-radius: 2px 2px 0 0; }
@@ -325,11 +325,11 @@
     margin-bottom: 14px;
   }
   .total-label { font-size: 10px; letter-spacing: 2px; color: var(--gray-600); text-transform: uppercase; margin-bottom: 12px; }
-  .total-row { display: flex; justify-content: space-between; font-size: 13px; color: var(--gray-600); margin-bottom: 6px; }
+  .total-row { display: flex; justify-content: space-between; font-size: 13px; color: var(--gray-600); margin-bottom: 6px; font-family: var(--sans); }
   .total-row.main { color: var(--black); }
   .total-divider { border: none; border-top: 1px solid var(--gray-200); margin: 10px 0; }
-  .total-final { display: flex; justify-content: space-between; font-size: 15px; font-weight: 500; color: var(--black); }
-  .total-final .amount { font-family: var(--serif); font-size: 20px; font-weight: 300; }
+  .total-final { display: flex; justify-content: space-between; font-size: 14px; font-weight: 500; color: var(--black); font-family: var(--sans); }
+  .total-final .amount { font-family: var(--sans); font-size: 15px; font-weight: 500; }
   .total-pending { font-size: 12px; color: var(--gray-400); font-style: italic; text-align: center; padding: 4px 0; }
 
   /* Submit btn */
@@ -373,13 +373,14 @@
 
   /* Popup image at top */
   .popup-img {
-    width: 100%; height: 200px;
+    width: 100%; height: 220px;
     background: var(--gray-100);
     display: flex; align-items: center; justify-content: center;
     overflow: hidden; position: relative;
   }
   .popup-img img {
-    width: 100%; height: 100%; object-fit: cover; display: block;
+    width: 100%; height: 100%; object-fit: contain; object-position: center;
+    display: block; background: var(--gray-100);
   }
   .popup-img img.hide { display: none; }
   .popup-img-placeholder {
@@ -547,7 +548,7 @@
       <!-- ORDER TOTAL -->
       <div class="order-total-box">
         <div class="total-label">Order Summary</div>
-        <div class="total-row main"><span>2 Perfumes (30ml each)</span><span>৳১,৩৯০</span></div>
+        <div class="total-row main"><span>2 Perfumes (30ml each)</span><span>Tk 1,390</span></div>
         <div class="total-row" id="deliveryRow"><span>Delivery</span><span id="deliveryAmt">—</span></div>
         <hr class="total-divider">
         <div class="total-final" id="totalFinal" style="display:none">
@@ -745,8 +746,8 @@ function updateTotal() {
   const isDhaka = selectedDistrict.toLowerCase() === 'dhaka';
   const delivery = isDhaka ? 80 : 130;
   const total = 1390 + delivery;
-  document.getElementById('deliveryAmt').textContent = '৳' + delivery;
-  document.getElementById('totalAmt').textContent = '৳' + total.toLocaleString('en-BD');
+  document.getElementById('deliveryAmt').textContent = 'Tk ' + delivery;
+  document.getElementById('totalAmt').textContent = 'Tk ' + total;
   document.getElementById('totalFinal').style.display = 'flex';
   document.getElementById('totalPending').style.display = 'none';
 }
