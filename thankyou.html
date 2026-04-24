@@ -213,7 +213,7 @@ src="https://www.facebook.com/tr?id=1517308272696814&ev=PageView&noscript=1"
     </div>
 
     <hr class="summary-divider">
-    <div class="summary-row"><span class="label">Perfumes</span><span>Tk 1,390</span></div>
+    <div class="summary-row"><span class="label">Perfumes</span><span>Tk 1,490</span></div>
     <div class="summary-row" id="sumDeliveryRow" style="display:none"><span class="label">Delivery</span><span id="sumDelivery">—</span></div>
     <hr class="summary-divider">
     <div class="summary-total">
@@ -241,11 +241,11 @@ src="https://www.facebook.com/tr?id=1517308272696814&ev=PageView&noscript=1"
     document.getElementById('sumDelivery').textContent = 'Tk ' + delivery;
     document.getElementById('sumTotal').textContent    = 'Tk ' + total.toLocaleString();
   } else {
-    document.getElementById('sumTotal').textContent = 'Tk 1,390 + delivery';
+    document.getElementById('sumTotal').textContent = 'Tk 1,490 + delivery';
   }
 
   // Facebook Pixel — Purchase event
-  const orderTotal = isNaN(total) ? 1390 : total;
+  const orderTotal = isNaN(total) ? 1490 : total;
   fbq('track', 'Purchase', {
     value: orderTotal,
     currency: 'BDT',
