@@ -52,7 +52,12 @@ src="https://www.facebook.com/tr?id=1517308272696814&ev=PageView&noscript=1"
   nav {
     position: fixed; top: 0; left: 0; right: 0; z-index: 100;
     background: var(--white); border-bottom: 1px solid var(--gray-200);
-    padding: 0 24px; height: var(--nav-h);
+    height: var(--nav-h);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .nav-inner {
+    width: 70%;
+    max-width: 1100px;
     display: flex; align-items: center; justify-content: space-between;
   }
   .logo img { height: 36px; width: auto; display: block; }
@@ -257,6 +262,7 @@ src="https://www.facebook.com/tr?id=1517308272696814&ev=PageView&noscript=1"
     font-family: var(--serif); font-size: 26px; font-weight: 300;
     color: var(--black); margin-bottom: 20px;
   }
+  .faq-title { font-family: var(--serif); font-size: 28px; font-weight: 300; color: var(--black); margin-bottom: 20px; }
   .faq-item {
     display: flex; gap: 12px; align-items: flex-start;
     padding: 16px 0; border-bottom: 1px solid var(--gray-100);
@@ -268,8 +274,8 @@ src="https://www.facebook.com/tr?id=1517308272696814&ev=PageView&noscript=1"
     display: flex; align-items: center; justify-content: center;
   }
   .faq-check svg { width: 11px; height: 11px; }
-  .faq-q { font-size: 14px; font-weight: 500; color: var(--black); margin-bottom: 5px; line-height: 1.4; }
-  .faq-a { font-size: 13px; color: var(--gray-600); line-height: 1.7; }
+  .faq-q { font-size: 16px; font-weight: 500; color: var(--black); margin-bottom: 6px; line-height: 1.4; }
+  .faq-a { font-size: 14px; color: var(--gray-600); line-height: 1.8; }
 
   /* ORDER FORM */
   .form-block { padding: 28px 20px 56px; }
@@ -396,11 +402,13 @@ src="https://www.facebook.com/tr?id=1517308272696814&ev=PageView&noscript=1"
 <body>
 
 <nav>
-  <div class="logo"><img src="logo.png" alt="Celures"></div>
-  <a class="nav-whatsapp" href="https://wa.me/message/UDULI5NP36Q4L1" target="_blank" rel="noopener">
-    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.115.549 4.103 1.508 5.836L.057 23.625a.75.75 0 00.921.918l5.884-1.536A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.75a9.695 9.695 0 01-4.949-1.355l-.355-.211-3.668.957.986-3.587-.231-.368A9.698 9.698 0 012.25 12C2.25 6.615 6.615 2.25 12 2.25S21.75 6.615 21.75 12 17.385 21.75 12 21.75z"/></svg>
-    <span class="wa-text">Chat on WhatsApp</span>
-  </a>
+  <div class="nav-inner">
+    <div class="logo"><img src="logo.png" alt="Celures"></div>
+    <a class="nav-whatsapp" href="https://wa.me/message/UDULI5NP36Q4L1" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.115.549 4.103 1.508 5.836L.057 23.625a.75.75 0 00.921.918l5.884-1.536A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.75a9.695 9.695 0 01-4.949-1.355l-.355-.211-3.668.957.986-3.587-.231-.368A9.698 9.698 0 012.25 12C2.25 6.615 6.615 2.25 12 2.25S21.75 6.615 21.75 12 17.385 21.75 12 21.75z"/></svg>
+      <span class="wa-text">Chat on WhatsApp</span>
+    </a>
+  </div>
 </nav>
 
 <div class="page-body">
@@ -418,7 +426,7 @@ src="https://www.facebook.com/tr?id=1517308272696814&ev=PageView&noscript=1"
   <!-- OFFER -->
   <div class="offer-block">
     <div class="offer-tag"><div class="offer-tag-dot"></div>Summer Special — Limited Offer 🔥</div>
-    <div class="offer-subtitle">২টি Perfume · 30ml each · যেকোনো 12টি থেকে 2টি choose করুন</div>
+    <div class="offer-subtitle">২টি Perfume · 30ml each · 12টি থেকে যেকোনো 2টি choose করুন</div>
     <div class="price-row">
       <div class="price-new">৳১,৪৯০</div>
       <div class="price-old">৳২,৪০০</div>
@@ -432,7 +440,7 @@ src="https://www.facebook.com/tr?id=1517308272696814&ev=PageView&noscript=1"
       <div class="delivery-pill">🚚 ঢাকার ভেতরে ডেলিভারি ৳৮০</div>
       <div class="delivery-pill">🚚 ঢাকার বাইরে ৳১৩০</div>
     </div>
-  </div>
+  </div><!-- end offer-block -->
 
   <!-- PERFUME SELECTION -->
   <div class="perfume-block">
@@ -529,8 +537,9 @@ src="https://www.facebook.com/tr?id=1517308272696814&ev=PageView&noscript=1"
     </div>
   </div><!-- end form-block -->
 
-  <!-- FAQ — after order form -->
+  <!-- FAQ -->
   <div class="faq-block">
+    <div class="faq-title">Frequently Asked Questions</div>
 
     <div class="faq-item">
       <div class="faq-check"><svg viewBox="0 0 12 10" fill="none"><polyline points="1,5 4.5,8.5 11,1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
