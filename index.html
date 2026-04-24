@@ -78,8 +78,29 @@ src="https://www.facebook.com/tr?id=1517308272696814&ev=PageView&noscript=1"
     .nav-whatsapp { padding: 8px 10px; }
   }
 
-  /* ── PAGE: full scroll, no sticky columns ── */
-  .page-body { padding-top: var(--nav-h); max-width: 1100px; margin: 0 auto; }
+  /* ── PAGE: 2-col on desktop, full page scroll ── */
+  .page-body { padding-top: var(--nav-h); }
+  .video-col { display: block; }
+  .content-col { display: block; }
+
+  @media (min-width: 900px) {
+    .page-body {
+      display: grid;
+      grid-template-columns: 46% 54%;
+      align-items: start;
+    }
+    .video-col {
+      position: sticky;
+      top: var(--nav-h);
+      height: calc(100vh - var(--nav-h));
+      display: flex;
+      align-items: center;
+      padding: 32px 24px 32px 40px;
+    }
+    .content-col {
+      border-left: 1px solid var(--gray-200);
+    }
+  }
 
   /* ── VIDEO ── */
   .video-wrap {
@@ -89,7 +110,7 @@ src="https://www.facebook.com/tr?id=1517308272696814&ev=PageView&noscript=1"
     cursor: pointer;
   }
   @media (min-width: 900px) {
-    .video-wrap { border-radius: 0; }
+    .video-wrap { border-radius: 12px; overflow: hidden; }
   }
   .video-wrap video {
     position: absolute; inset: 0;
@@ -416,15 +437,20 @@ src="https://www.facebook.com/tr?id=1517308272696814&ev=PageView&noscript=1"
 
 <div class="page-body">
 
-  <!-- VIDEO -->
-  <div class="video-wrap">
-    <!-- TO ADD VIDEO: set src="yourvideo.mp4" and remove style="display:none" -->
-    <video src="" loop muted playsinline style="display:none"></video>
-    <div class="video-placeholder">
-      <div class="play-ring"><div class="play-tri"></div></div>
-      <div class="video-label">Brand Video</div>
+  <!-- LEFT COL: video only -->
+  <div class="video-col">
+    <div class="video-wrap">
+      <!-- TO ADD VIDEO: set src="yourvideo.mp4" and remove style="display:none" -->
+      <video src="" loop muted playsinline style="display:none"></video>
+      <div class="video-placeholder">
+        <div class="play-ring"><div class="play-tri"></div></div>
+        <div class="video-label">Brand Video</div>
+      </div>
     </div>
   </div>
+
+  <!-- RIGHT COL: everything else -->
+  <div class="content-col">
 
   <!-- OFFER -->
   <div class="offer-block">
@@ -608,8 +634,9 @@ src="https://www.facebook.com/tr?id=1517308272696814&ev=PageView&noscript=1"
       </div>
     </div>
 
-  </div>
+  </div><!-- end faq-block -->
 
+  </div><!-- end content-col -->
 </div><!-- end page-body -->
 
 <!-- POPUP -->
