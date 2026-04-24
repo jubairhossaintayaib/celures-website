@@ -521,9 +521,9 @@ src="https://www.facebook.com/tr?id=1517308272696814&ev=PageView&noscript=1"
       <div class="offer-tag"><div class="offer-tag-dot"></div>Summer Special — Limited Offer</div>
       <div class="offer-subtitle">2 Perfumes · 30ml each · Choose any 2 from 12</div>
       <div class="price-row">
-        <div class="price-new">৳১,৩৯০</div>
+        <div class="price-new">৳১,৪৯০</div>
         <div class="price-old">৳২,৪০০</div>
-        <div class="price-save">Save ৳১,০১০</div>
+        <div class="price-save">Save ৳৯১০</div>
       </div>
       <div class="delivery-row">
         <div class="delivery-pill">Dhaka delivery ৳80</div>
@@ -548,9 +548,9 @@ src="https://www.facebook.com/tr?id=1517308272696814&ev=PageView&noscript=1"
       <div class="offer-tag"><div class="offer-tag-dot"></div>Summer Special — Limited Offer</div>
       <div class="offer-subtitle">2 Perfumes · 30ml each · Choose any 2 from 12</div>
       <div class="price-row">
-        <div class="price-new">৳১,৩৯০</div>
+        <div class="price-new">৳১,৪৯০</div>
         <div class="price-old">৳২,৪০০</div>
-        <div class="price-save">Save ৳১,০১০</div>
+        <div class="price-save">Save ৳৯১০</div>
       </div>
       <div class="delivery-row">
         <div class="delivery-pill">Dhaka delivery ৳80</div>
@@ -634,7 +634,7 @@ src="https://www.facebook.com/tr?id=1517308272696814&ev=PageView&noscript=1"
       <!-- ORDER TOTAL -->
       <div class="order-total-box">
         <div class="total-label">Order Summary</div>
-        <div class="total-row main"><span>2 Perfumes (30ml each)</span><span>Tk 1,390</span></div>
+        <div class="total-row main"><span>2 Perfumes (30ml each)</span><span>Tk 1,490</span></div>
         <div class="total-row" id="deliveryRow"><span>Delivery</span><span id="deliveryAmt">—</span></div>
         <hr class="total-divider">
         <div class="total-final" id="totalFinal" style="display:none">
@@ -834,7 +834,7 @@ function updateTotal() {
   }
   const isDhaka = selectedDistrict.toLowerCase() === 'dhaka';
   const delivery = isDhaka ? 80 : 130;
-  const total = 1390 + delivery;
+  const total = 1490 + delivery;
   document.getElementById('deliveryAmt').textContent = 'Tk ' + delivery;
   document.getElementById('totalAmt').textContent = 'Tk ' + total;
   document.getElementById('totalFinal').style.display = 'flex';
@@ -868,7 +868,7 @@ function submitOrder() {
   const p2name = needsSuggestion ? 'Needs Suggestion (call to confirm)' : PERFUMES.find(p => p.id === selected[1]).name;
   const isDhaka = selectedDistrict.toLowerCase() === 'dhaka';
   const delivery = isDhaka ? 80 : 130;
-  const total = 1390 + delivery;
+  const total = 1490 + delivery;
 
   const btn = document.getElementById('confirmBtn');
   btn.disabled = true; btn.textContent = 'Submitting...';
