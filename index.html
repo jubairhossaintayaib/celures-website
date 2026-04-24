@@ -105,7 +105,7 @@
   }
   .video-box {
     width: 100%;
-    aspect-ratio: 4/5;
+    aspect-ratio: 16/9;
     max-height: calc(100vh - var(--nav-h) - 80px);
     background: #111;
     border-radius: 12px;
@@ -280,6 +280,38 @@
   .sel-slot.suggestion-mode { border: 1px solid var(--gray-400); background: var(--gray-100); color: var(--gray-600); font-size: 10px; font-style: italic; }
   .sel-counter { font-size: 11px; color: var(--gray-600); margin-top: 8px; text-align: right; }
   .sel-counter span { font-weight: 500; color: var(--black); }
+
+  /* ── DISCLAIMER ── */
+  .disclaimer-block {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    padding: 16px 24px;
+    background: #fffdf5;
+    border-top: 1px solid #e8e4d0;
+    border-bottom: 1px solid #e8e4d0;
+  }
+  @media (min-width: 900px) { .disclaimer-block { padding: 16px 40px; } }
+  .disclaimer-icon {
+    font-size: 14px;
+    color: #a89060;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+  .disclaimer-text {
+    font-size: 11px;
+    color: var(--gray-600);
+    line-height: 1.6;
+  }
+  .disclaimer-text strong {
+    display: block;
+    font-size: 11px;
+    font-weight: 500;
+    color: #8a7040;
+    margin-bottom: 2px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
 
   /* ── ORDER FORM ── */
   .form-block { padding: 24px 24px 56px; }
@@ -512,6 +544,15 @@
       <div class="sel-counter">Selected: <span id="selCount">0</span> / 2</div>
     </div>
 
+    <!-- DISCLAIMER -->
+    <div class="disclaimer-block">
+      <div class="disclaimer-icon">ℹ</div>
+      <div class="disclaimer-text">
+        <strong>About the product images</strong>
+        The bottle images shown here are the original luxury fragrances that inspired our scents — not the actual product you'll receive. You will receive Celures' own 30ml perfume bottle, as shown in the brand video above. Same scent, our bottle.
+      </div>
+    </div>
+
     <!-- ORDER FORM -->
     <div class="form-block">
       <div class="form-title">Place Your Order</div>
@@ -599,18 +640,18 @@
 
 <script>
 const PERFUMES = [
-  { id:1,  name:"Nautica Voyage",            inspo:"Inspired by Nautica",            notes:["Apple","Aquatic","Cedar","Moss"],                  desc:"Fresh, aquatic, and effortlessly cool. Crisp green apple and cold water open this scent before a woody, mossy base settles in. Perfect for everyday wear." },
-  { id:2,  name:"Acqua di Giò Profumo",      inspo:"Inspired by Giorgio Armani",     notes:["Sea Salt","Incense","Patchouli","Musk"],            desc:"Deep oceanic freshness meets smoky incense. A mysterious and magnetic blend for those who love depth. Unmistakable and unforgettable." },
-  { id:3,  name:"Dior Sauvage Elixir",       inspo:"Inspired by Dior",               notes:["Cinnamon","Sandalwood","Hawthorn","Amber"],         desc:"Bold, intense, and deeply warm. Spicy cinnamon and rich sandalwood make this the ultimate evening statement. Commands attention effortlessly." },
-  { id:4,  name:"Versace Eros",              inspo:"Inspired by Versace",            notes:["Mint","Vanilla","Tonka Bean","Vetiver"],             desc:"The scent of love and power. Fresh mint opens into a creamy vanilla and tonka base — confident, passionate, and absolutely unforgettable." },
-  { id:5,  name:"Club de Nuit Intense",      inspo:"Inspired by Armaf",              notes:["Lemon","Blackcurrant","Birch","Ambergris"],         desc:"Smoky, citrusy, and commanding. Built for nights that matter. A long-lasting, head-turning fragrance with a distinctive birch smoke signature." },
-  { id:6,  name:"Davidoff Cool Water",       inspo:"Inspired by Davidoff",           notes:["Mint","Lavender","Sandalwood","Musk"],              desc:"A timeless classic. Clean, cool, and refreshing — lavender and mint over a warm sandalwood base. The perfect companion for hot days." },
-  { id:7,  name:"Chanel Allure Homme Sport", inspo:"Inspired by Chanel",             notes:["Citrus","Cedar","White Musk","Pepper"],             desc:"Sporty yet refined. A crisp citrus opening with a white musk and cedar finish. Effortlessly transitions from day to night." },
-  { id:8,  name:"YSL Y",                     inspo:"Inspired by Yves Saint Laurent", notes:["Apple","Ginger","Sage","Amberwood"],                desc:"Modern and daring. Warm amberwood and spicy ginger make this a memorable urban fragrance — made for the confident city man." },
-  { id:9,  name:"Lacoste Blanc",             inspo:"Inspired by Lacoste",            notes:["Grapefruit","Rosemary","Cedar","White Musk"],       desc:"Clean and free-spirited. A burst of grapefruit opens into a smooth rosemary and musk finish. Light, fresh, and easy to love every day." },
-  { id:10, name:"Rasasi Hawas Kobra",        inspo:"Inspired by Rasasi",             notes:["Bergamot","Oud","Amber","Musk"],                    desc:"Rich oriental depth. Oud and amber create a powerful, long-lasting trail — for those who love heavy, luxurious fragrances that linger all day." },
-  { id:11, name:"Dunhill Blue",              inspo:"Inspired by Dunhill",            notes:["Lavender","Juniper","Oakmoss","Vetiver"],           desc:"Sophisticated British elegance. Lavender and juniper over a calming oakmoss base. Calm, composed, and always appropriate for formal occasions." },
-  { id:12, name:"Invictus",                  inspo:"Inspired by Paco Rabanne",       notes:["Grapefruit","Sea Salt","Guaiac Wood","Ambergris"],  desc:"The champion's scent. Fresh grapefruit and sea salt over a powerful guaiac wood base. Impossible to ignore — wherever you go." }
+  { id:1,  name:"Nautica Voyage",              inspo:"Inspired by Nautica",            notes:["Apple","Aquatic","Cedar","Moss"],                  desc:"Fresh, aquatic, and effortlessly cool. Crisp green apple and cold water open this scent before a woody, mossy base settles in. Perfect for everyday wear." },
+  { id:2,  name:"Acqua di Giò Profumo",        inspo:"Inspired by Giorgio Armani",     notes:["Sea Salt","Incense","Patchouli","Musk"],            desc:"Deep oceanic freshness meets smoky incense. A mysterious and magnetic blend for those who love depth. Unmistakable and unforgettable." },
+  { id:4,  name:"Versace Eros",                inspo:"Inspired by Versace",            notes:["Mint","Vanilla","Tonka Bean","Vetiver"],             desc:"The scent of love and power. Fresh mint opens into a creamy vanilla and tonka base — confident, passionate, and absolutely unforgettable." },
+  { id:5,  name:"Club de Nuit Intense",        inspo:"Inspired by Armaf",              notes:["Lemon","Blackcurrant","Birch","Ambergris"],         desc:"Smoky, citrusy, and commanding. Built for nights that matter. A long-lasting, head-turning fragrance with a distinctive birch smoke signature." },
+  { id:6,  name:"Davidoff Cool Water",         inspo:"Inspired by Davidoff",           notes:["Mint","Lavender","Sandalwood","Musk"],              desc:"A timeless classic. Clean, cool, and refreshing — lavender and mint over a warm sandalwood base. The perfect companion for hot days." },
+  { id:7,  name:"Chanel Allure Homme Sport",   inspo:"Inspired by Chanel",             notes:["Citrus","Cedar","White Musk","Pepper"],             desc:"Sporty yet refined. A crisp citrus opening with a white musk and cedar finish. Effortlessly transitions from day to night." },
+  { id:8,  name:"YSL Y",                       inspo:"Inspired by Yves Saint Laurent", notes:["Apple","Ginger","Sage","Amberwood"],                desc:"Modern and daring. Warm amberwood and spicy ginger make this a memorable urban fragrance — made for the confident city man." },
+  { id:9,  name:"Lacoste Blanc",               inspo:"Inspired by Lacoste",            notes:["Grapefruit","Rosemary","Cedar","White Musk"],       desc:"Clean and free-spirited. A burst of grapefruit opens into a smooth rosemary and musk finish. Light, fresh, and easy to love every day." },
+  { id:11, name:"Dunhill Blue",                inspo:"Inspired by Dunhill",            notes:["Lavender","Juniper","Oakmoss","Vetiver"],           desc:"Sophisticated British elegance. Lavender and juniper over a calming oakmoss base. Calm, composed, and always appropriate for formal occasions." },
+  { id:12, name:"Invictus",                    inspo:"Inspired by Paco Rabanne",       notes:["Grapefruit","Sea Salt","Guaiac Wood","Ambergris"],  desc:"The champion's scent. Fresh grapefruit and sea salt over a powerful guaiac wood base. Impossible to ignore — wherever you go." },
+  { id:13, name:"LV Imagination",              inspo:"Inspired by Louis Vuitton",      notes:["Citrus","Vetiver","Cedar","Musk"],                  desc:"Bright, luminous, and refined. A fresh burst of citrus opens into a warm vetiver and cedar base — effortlessly luxurious and endlessly versatile." },
+  { id:14, name:"Stronger With You Intensely", inspo:"Inspired by Emporio Armani",     notes:["Tonka Bean","Vanilla","Chestnut","Musk"],           desc:"Warm, addictive, and deeply masculine. Sweet chestnut and vanilla wrapped in a rich tonka base — bold enough to make a lasting impression." }
 ];
 
 const DISTRICTS = ["Bagerhat","Bandarban","Barguna","Barishal","Bhola","Bogura","Brahmanbaria","Chandpur","Chattogram","Chuadanga","Cox's Bazar","Cumilla","Dhaka","Dinajpur","Faridpur","Feni","Gaibandha","Gazipur","Gopalganj","Habiganj","Jamalpur","Jashore","Jhalokati","Jhenaidah","Joypurhat","Khagrachhari","Khulna","Kishoreganj","Kurigram","Kushtia","Lakshmipur","Lalmonirhat","Madaripur","Magura","Manikganj","Meherpur","Moulvibazar","Munshiganj","Mymensingh","Naogaon","Narail","Narayanganj","Narsingdi","Natore","Netrokona","Nilphamari","Noakhali","Pabna","Panchagarh","Patuakhali","Pirojpur","Rajbari","Rajshahi","Rangamati","Rangpur","Satkhira","Shariatpur","Sherpur","Sirajganj","Sunamganj","Sylhet","Tangail","Thakurgaon"];
@@ -727,8 +768,11 @@ districtInput.addEventListener('focus', function () {
 document.addEventListener('click', e => { if (!e.target.closest('.district-wrapper')) districtDropdown.classList.remove('open'); });
 function renderDistricts(list) {
   districtDropdown.innerHTML = list.length
-    ? list.map(d => `<div class="district-option" onclick="pickDistrict('${d}')">${d}</div>`).join('')
+    ? list.map(d => `<div class="district-option" data-name="${d.replace(/"/g,'&quot;')}">${d}</div>`).join('')
     : '<div class="district-option no-results">No district found</div>';
+  districtDropdown.querySelectorAll('.district-option[data-name]').forEach(el => {
+    el.addEventListener('click', () => pickDistrict(el.dataset.name));
+  });
 }
 function pickDistrict(name) {
   selectedDistrict = name;
