@@ -77,7 +77,7 @@
   @media (min-width: 900px) {
     .page-body {
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: 52% 48%;
       min-height: calc(100vh - var(--nav-h));
       align-items: start;
     }
@@ -86,26 +86,25 @@
     .page-body { grid-template-columns: 55% 45%; }
   }
 
-  /* ── LEFT: sticky video ── */
+  /* ── LEFT: video + offer block stacked ── */
   .desktop-left { display: none; }
   @media (min-width: 900px) {
     .desktop-left {
-      display: flex;
+      display: block;
       position: sticky;
       top: var(--nav-h);
       height: calc(100vh - var(--nav-h));
       background: var(--white);
-      align-items: center;
-      justify-content: center;
-      padding: 40px 32px 40px 40px;
+      overflow-y: auto;
     }
   }
+
+  /* Video sits at top of left panel */
   .video-box {
     width: 100%;
     aspect-ratio: 16/9;
-    max-height: calc(100vh - var(--nav-h) - 80px);
     background: #111;
-    border-radius: 12px;
+    border-radius: 0;
     overflow: hidden;
     position: relative;
     display: flex;
@@ -140,6 +139,20 @@
   }
   .video-label { font-size: 9px; letter-spacing: 3px; color: rgba(255,255,255,0.28); text-transform: uppercase; }
 
+  /* Offer block on left (desktop only) */
+  .offer-block-left {
+    display: none;
+  }
+  @media (min-width: 900px) {
+    .offer-block-left {
+      display: block;
+      padding: 28px 32px 28px;
+      border-bottom: 1px solid var(--gray-200);
+      border-right: 1px solid var(--gray-200);
+    }
+    .offer-block-right { display: none; }
+  }
+
   /* ── MOBILE VIDEO ── */
   .mobile-video {
     background: #111; width: 100%; aspect-ratio: 16/9;
@@ -151,27 +164,30 @@
   .desktop-right { border-left: 1px solid var(--gray-200); }
 
   /* ── OFFER BLOCK ── */
-  .offer-block { padding: 28px 24px 24px; border-bottom: 1px solid var(--gray-200); }
-  @media (min-width: 900px) { .offer-block { padding: 32px 40px 28px; } }
+  .offer-block { padding: 24px 20px 20px; border-bottom: 1px solid var(--gray-200); }
+  @media (min-width: 900px) { .offer-block { padding: 28px 32px; } }
   .offer-tag {
     display: inline-flex; align-items: center; gap: 6px;
-    font-size: 10px; letter-spacing: 2.5px; color: var(--gray-600);
+    font-size: 11px; letter-spacing: 2px; color: var(--gray-600);
     text-transform: uppercase; margin-bottom: 12px;
   }
   .offer-tag-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--gray-400); }
-  .offer-subtitle { font-size: 12px; color: var(--gray-400); margin-bottom: 4px; }
-  .price-row { display: flex; align-items: baseline; gap: 12px; margin: 8px 0 6px; flex-wrap: wrap; }
-  .price-new { font-family: var(--serif); font-size: 34px; font-weight: 300; color: var(--black); }
-  .price-old { font-size: 16px; color: var(--gray-400); text-decoration: line-through; }
-  .price-save { font-size: 11px; color: var(--gray-600); background: var(--gray-100); border-radius: 20px; padding: 2px 10px; }
-  .delivery-row { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 12px; }
-  .delivery-pill { font-size: 11px; color: var(--gray-600); border: 1px solid var(--gray-200); border-radius: 20px; padding: 5px 14px; background: var(--white); }
+  .offer-subtitle { font-size: 14px; color: var(--gray-600); margin-bottom: 4px; }
+  @media (min-width: 900px) { .offer-subtitle { font-size: 15px; } }
+  .price-row { display: flex; align-items: baseline; gap: 12px; margin: 10px 0 8px; flex-wrap: wrap; }
+  .price-new { font-family: var(--serif); font-size: 38px; font-weight: 300; color: var(--black); }
+  @media (min-width: 900px) { .price-new { font-size: 42px; } }
+  .price-old { font-size: 17px; color: var(--gray-400); text-decoration: line-through; }
+  .price-save { font-size: 12px; color: var(--gray-600); background: var(--gray-100); border-radius: 20px; padding: 2px 10px; }
+  .delivery-row { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 14px; }
+  .delivery-pill { font-size: 13px; color: var(--gray-600); border: 1px solid var(--gray-200); border-radius: 20px; padding: 6px 16px; background: var(--white); }
 
   /* ── PERFUME SECTION ── */
-  .perfume-block { padding: 24px 24px 0; border-bottom: 1px solid var(--gray-200); }
-  @media (min-width: 900px) { .perfume-block { padding: 24px 40px 0; } }
-  .block-title { font-family: var(--serif); font-size: 20px; font-weight: 300; color: var(--black); margin-bottom: 4px; }
-  .block-hint { font-size: 11px; color: var(--gray-400); margin-bottom: 16px; }
+  .perfume-block { padding: 22px 20px 0; border-bottom: 1px solid var(--gray-200); }
+  @media (min-width: 900px) { .perfume-block { padding: 24px 32px 0; } }
+  .block-title { font-family: var(--serif); font-size: 22px; font-weight: 300; color: var(--black); margin-bottom: 4px; }
+  @media (min-width: 900px) { .block-title { font-size: 24px; } }
+  .block-hint { font-size: 12px; color: var(--gray-400); margin-bottom: 16px; }
 
   /* PERFUME GRID */
   .perfume-grid {
@@ -259,11 +275,11 @@
 
   /* ── SELECTION BAR ── */
   .selection-block {
-    padding: 18px 24px 22px;
+    padding: 18px 20px 22px;
     border-bottom: 1px solid var(--gray-200);
     background: var(--gray-100);
   }
-  @media (min-width: 900px) { .selection-block { padding: 18px 40px 22px; } }
+  @media (min-width: 900px) { .selection-block { padding: 18px 32px 22px; } }
   .sel-label { font-size: 10px; letter-spacing: 2px; color: var(--gray-600); text-transform: uppercase; margin-bottom: 10px; }
   .sel-slots { display: flex; gap: 10px; }
   .sel-slot {
@@ -288,7 +304,7 @@
     border-top: 1px solid #e8e4d0;
     border-bottom: 1px solid #e8e4d0;
   }
-  @media (min-width: 900px) { .disclaimer-block { padding: 16px 40px; } }
+  @media (min-width: 900px) { .disclaimer-block { padding: 16px 32px; } }
   .disclaimer-icon {
     font-size: 14px;
     color: #a89060;
@@ -311,8 +327,8 @@
   }
 
   /* ── ORDER FORM ── */
-  .form-block { padding: 24px 24px 56px; }
-  @media (min-width: 900px) { .form-block { padding: 24px 40px 60px; } }
+  .form-block { padding: 24px 20px 56px; }
+  @media (min-width: 900px) { .form-block { padding: 24px 32px 60px; } }
   .form-title { font-family: var(--serif); font-size: 22px; font-weight: 300; color: var(--black); margin-bottom: 18px; }
 
   .form-group { margin-bottom: 14px; }
@@ -474,13 +490,27 @@
 
 <div class="page-body">
 
-  <!-- LEFT: sticky video -->
+  <!-- LEFT: sticky video + offer info -->
   <div class="desktop-left">
     <div class="video-box">
       <video src="" loop muted playsinline style="display:none"></video>
       <div class="video-placeholder">
         <div class="play-ring"><div class="play-tri"></div></div>
         <div class="video-label">Brand Video</div>
+      </div>
+    </div>
+    <!-- Offer info shown below video on desktop left -->
+    <div class="offer-block-left">
+      <div class="offer-tag"><div class="offer-tag-dot"></div>Summer Special — Limited Offer</div>
+      <div class="offer-subtitle">2 Perfumes · 30ml each · Choose any 2 from 12</div>
+      <div class="price-row">
+        <div class="price-new">৳১,৩৯০</div>
+        <div class="price-old">৳২,৪০০</div>
+        <div class="price-save">Save ৳১,০১০</div>
+      </div>
+      <div class="delivery-row">
+        <div class="delivery-pill">Dhaka delivery ৳80</div>
+        <div class="delivery-pill">Outside Dhaka ৳130</div>
       </div>
     </div>
   </div>
@@ -496,8 +526,8 @@
       </div>
     </div>
 
-    <!-- OFFER -->
-    <div class="offer-block">
+    <!-- OFFER — mobile only, desktop shows this on left panel -->
+    <div class="offer-block offer-block-right">
       <div class="offer-tag"><div class="offer-tag-dot"></div>Summer Special — Limited Offer</div>
       <div class="offer-subtitle">2 Perfumes · 30ml each · Choose any 2 from 12</div>
       <div class="price-row">
