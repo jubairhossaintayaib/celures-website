@@ -704,31 +704,8 @@ src="https://www.facebook.com/tr?id=1517308272696814&ev=PageView&noscript=1"
   <div class="reviews-block">
     <div class="reviews-title">Customer Reviews</div>
     <div class="reviews-sub">Real messages from our customers 💬</div>
-    <div class="reviews-grid">
-      <div class="review-thumb" onclick="openReview(0)">
-        <img src="reviews/review1.jpg" alt="Customer review" onerror="this.parentElement.style.display='none'">
-        <div class="review-thumb-overlay"><div class="review-zoom-icon">🔍</div></div>
-      </div>
-      <div class="review-thumb" onclick="openReview(1)">
-        <img src="reviews/review2.jpg" alt="Customer review" onerror="this.parentElement.style.display='none'">
-        <div class="review-thumb-overlay"><div class="review-zoom-icon">🔍</div></div>
-      </div>
-      <div class="review-thumb" onclick="openReview(2)">
-        <img src="reviews/review3.jpg" alt="Customer review" onerror="this.parentElement.style.display='none'">
-        <div class="review-thumb-overlay"><div class="review-zoom-icon">🔍</div></div>
-      </div>
-      <div class="review-thumb" onclick="openReview(3)">
-        <img src="reviews/review4.jpg" alt="Customer review" onerror="this.parentElement.style.display='none'">
-        <div class="review-thumb-overlay"><div class="review-zoom-icon">🔍</div></div>
-      </div>
-      <div class="review-thumb" onclick="openReview(4)">
-        <img src="reviews/review5.jpg" alt="Customer review" onerror="this.parentElement.style.display='none'">
-        <div class="review-thumb-overlay"><div class="review-zoom-icon">🔍</div></div>
-      </div>
-      <div class="review-thumb" onclick="openReview(5)">
-        <img src="reviews/review6.jpg" alt="Customer review" onerror="this.parentElement.style.display='none'">
-        <div class="review-thumb-overlay"><div class="review-zoom-icon">🔍</div></div>
-      </div>
+    <div class="reviews-grid" id="reviewsGrid">
+      <!-- Auto-populated by JS — just upload review1.jpg, review2.jpg etc. to the reviews/ folder -->
     </div>
   </div>
 
@@ -961,15 +938,31 @@ document.getElementById('fieldPhone').addEventListener('input', function() {
 });
 
 // ── Review lightbox ──
-const REVIEW_IMAGES = [
-  'reviews/review1.jpg',
-  'reviews/review2.jpg',
-  'reviews/review3.jpg',
-  'reviews/review4.jpg',
-  'reviews/review5.jpg',
-  'reviews/review6.jpg'
-];
+const REVIEW_IMAGES = Array.from({length: 20}, (_, i) => `reviews/review${i+1}.jpg`);
 let currentReview = 0;
+let validReviews = [];
+
+// Find which images actually exist
+function initReviews() {
+  const grid = document.getElementById('reviewsGrid');
+  grid.innerHTML = '';
+  let loaded = 0;
+  REVIEW_IMAGES.forEach((src, i) => {
+    const img = new Image();
+    img.onload = () => {
+      validReviews.push(src);
+      validReviews.sort();
+      const thumb = document.createElement('div');
+      thumb.className = 'review-thumb';
+      thumb.innerHTML = `<img src="${src}" alt="Customer review"><div class="review-thumb-overlay"><div class="review-zoom-icon">🔍</div></div>`;
+      thumb.addEventListener('click', () => openReview(validReviews.indexOf(src)));
+      grid.appendChild(thumb);
+    };
+    img.onerror = () => {};
+    img.src = src;
+  });
+}
+initReviews();
 
 function openReview(idx) {
   currentReview = idx;
@@ -985,16 +978,16 @@ function closeReviewOnBg(e) {
   if (e.target === document.getElementById('reviewLightbox')) closeReview();
 }
 function nextReview() {
-  currentReview = (currentReview + 1) % REVIEW_IMAGES.length;
+  currentReview = (currentReview + 1) % validReviews.length;
   updateLightboxImg();
 }
 function prevReview() {
-  currentReview = (currentReview - 1 + REVIEW_IMAGES.length) % REVIEW_IMAGES.length;
+  currentReview = (currentReview - 1 + validReviews.length) % validReviews.length;
   updateLightboxImg();
 }
 function updateLightboxImg() {
-  document.getElementById('reviewLightboxImg').src = REVIEW_IMAGES[currentReview];
-  document.getElementById('reviewCounter').textContent = (currentReview + 1) + ' / ' + REVIEW_IMAGES.length;
+  document.getElementById('reviewLightboxImg').src = validReviews[currentReview];
+  document.getElementById('reviewCounter').textContent = (currentReview + 1) + ' / ' + validReviews.length;
 }
 
 // Keyboard navigation for review lightbox
