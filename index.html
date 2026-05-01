@@ -275,10 +275,6 @@ src="https://www.facebook.com/tr?id=1517308272696814&ev=PageView&noscript=1"
     background: var(--white);
   }
   @media (min-width: 700px) { .faq-block { padding: 36px 40px; } }
-  .faq-title {
-    font-family: var(--serif); font-size: 26px; font-weight: 300;
-    color: var(--black); margin-bottom: 20px;
-  }
   .faq-title { font-family: var(--serif); font-size: 28px; font-weight: 300; color: var(--black); margin-bottom: 20px; }
   .faq-item {
     display: flex; gap: 12px; align-items: flex-start;
@@ -433,7 +429,6 @@ src="https://www.facebook.com/tr?id=1517308272696814&ev=PageView&noscript=1"
   <!-- LEFT COL: video only -->
   <div class="video-col">
     <div class="video-wrap">
-      <!-- TO ADD VIDEO: set src="yourvideo.mp4" and remove style="display:none" -->
       <video src="" loop muted playsinline style="display:none"></video>
       <div class="video-placeholder">
         <div class="play-ring"><div class="play-tri"></div></div>
@@ -445,7 +440,6 @@ src="https://www.facebook.com/tr?id=1517308272696814&ev=PageView&noscript=1"
   <!-- RIGHT COL: everything else -->
   <div class="content-col">
 
-  <!-- OFFER -->
   <div class="offer-block">
     <div class="offer-tag"><div class="offer-tag-dot"></div>Summer Special — Limited Offer 🔥</div>
     <div class="offer-subtitle">২টি Perfume · 30ml each · 12টি থেকে যেকোনো 2টি choose করুন</div>
@@ -462,9 +456,8 @@ src="https://www.facebook.com/tr?id=1517308272696814&ev=PageView&noscript=1"
       <div class="delivery-pill">🚚 ঢাকার ভেতরে ডেলিভারি ৳৮০</div>
       <div class="delivery-pill">🚚 ঢাকার বাইরে ৳১৩০</div>
     </div>
-  </div><!-- end offer-block -->
+  </div>
 
-  <!-- PERFUME SELECTION -->
   <div class="perfume-block">
     <div class="block-title">আপনার ২টি পারফিউম বেছে নিন</div>
     <div class="block-hint">Tap a card to select &nbsp;·&nbsp; Tap ⓘ to read about a fragrance</div>
@@ -483,7 +476,6 @@ src="https://www.facebook.com/tr?id=1517308272696814&ev=PageView&noscript=1"
     </div>
   </div>
 
-  <!-- SELECTION BAR -->
   <div class="selection-block">
     <div class="sel-label">Your Selection</div>
     <div class="sel-slots">
@@ -493,7 +485,6 @@ src="https://www.facebook.com/tr?id=1517308272696814&ev=PageView&noscript=1"
     <div class="sel-counter">Selected: <span id="selCount">0</span> / 2</div>
   </div>
 
-  <!-- DISCLAIMER -->
   <div class="disclaimer-block">
     <div class="disclaimer-icon">ℹ</div>
     <div class="disclaimer-text">
@@ -502,7 +493,6 @@ src="https://www.facebook.com/tr?id=1517308272696814&ev=PageView&noscript=1"
     </div>
   </div>
 
-  <!-- ORDER FORM -->
   <div class="form-block">
     <div class="form-title">অর্ডার করুন</div>
 
@@ -557,9 +547,8 @@ src="https://www.facebook.com/tr?id=1517308272696814&ev=PageView&noscript=1"
       আমরা আপনাকে কল করে অর্ডারটি নিশ্চিত করবো।<br>
       We will call you to confirm before dispatch.
     </div>
-  </div><!-- end form-block -->
+  </div>
 
-  <!-- FAQ -->
   <div class="faq-block">
     <div class="faq-title">Frequently Asked Questions</div>
 
@@ -627,7 +616,7 @@ src="https://www.facebook.com/tr?id=1517308272696814&ev=PageView&noscript=1"
       </div>
     </div>
 
-  </div><!-- end faq-block -->
+  </div>
 
   </div><!-- end content-col -->
 </div><!-- end page-body -->
@@ -827,11 +816,9 @@ function submitOrder() {
   const btn = document.getElementById('confirmBtn');
   btn.disabled = true; btn.textContent = 'Submitting...';
 
-  const SCRIPT_URL = 'YOUR_GOOGLE_APPS_SCRIPT_URL_HERE';
+  const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyhrohY9EFB7c2dBRtRuC2ebtA9l-MY_LRdGZ2jLjGTAcslB154UqCfPubyg2TztOVBlg/exec';
   const payload = { name, phone, district: selectedDistrict, address, perfume1: p1name, perfume2: p2name, delivery: 'Tk ' + delivery, total: 'Tk ' + total, needs_suggestion: needsSuggestion ? 'Yes' : 'No', timestamp: new Date().toLocaleString('en-BD', { timeZone: 'Asia/Dhaka' }) };
   const params = new URLSearchParams({ name, phone, district: selectedDistrict, p1: p1name, p2: p2name, delivery, total });
-
-  if (SCRIPT_URL === 'YOUR_GOOGLE_APPS_SCRIPT_URL_HERE') { window.location.href = 'thankyou.html?' + params.toString(); return; }
 
   fetch(SCRIPT_URL, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) })
     .then(()  => window.location.href = 'thankyou.html?' + params.toString())
