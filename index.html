@@ -401,6 +401,92 @@ src="https://www.facebook.com/tr?id=1517308272696814&ev=PageView&noscript=1"
   .popup-select-btn:hover { opacity: 0.8; }
   .popup-select-btn.already { background: var(--gray-200); color: var(--gray-600); cursor: default; }
 
+  /* ── REVIEWS ── */
+  .reviews-block {
+    padding: 24px 20px;
+    border-bottom: 1px solid var(--gray-200);
+    background: var(--white);
+  }
+  @media (min-width: 700px) { .reviews-block { padding: 28px 40px; } }
+  .reviews-title {
+    font-family: var(--serif); font-size: 24px; font-weight: 300;
+    color: var(--black); margin-bottom: 4px;
+  }
+  .reviews-sub { font-size: 12px; color: var(--gray-400); margin-bottom: 16px; }
+  .reviews-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+  }
+  @media (min-width: 500px) { .reviews-grid { grid-template-columns: repeat(4, 1fr); } }
+  @media (min-width: 800px) { .reviews-grid { grid-template-columns: repeat(5, 1fr); gap: 10px; } }
+
+  .review-thumb {
+    aspect-ratio: 9/16;
+    border-radius: 8px;
+    overflow: hidden;
+    cursor: pointer;
+    position: relative;
+    background: var(--gray-100);
+    transition: transform 0.15s, box-shadow 0.15s;
+  }
+  .review-thumb:hover { transform: translateY(-2px); box-shadow: 0 6px 16px rgba(0,0,0,0.12); }
+  .review-thumb img {
+    width: 100%; height: 100%;
+    object-fit: cover; display: block;
+  }
+  .review-thumb-overlay {
+    position: absolute; inset: 0;
+    background: rgba(0,0,0,0);
+    transition: background 0.15s;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .review-thumb:hover .review-thumb-overlay { background: rgba(0,0,0,0.15); }
+  .review-zoom-icon {
+    width: 32px; height: 32px; border-radius: 50%;
+    background: rgba(255,255,255,0.9);
+    display: flex; align-items: center; justify-content: center;
+    opacity: 0; transition: opacity 0.15s;
+    font-size: 14px;
+  }
+  .review-thumb:hover .review-zoom-icon { opacity: 1; }
+
+  /* Review lightbox */
+  .review-lightbox {
+    display: none; position: fixed; inset: 0;
+    background: rgba(0,0,0,0.92); z-index: 250;
+    align-items: center; justify-content: center;
+    flex-direction: column;
+  }
+  .review-lightbox.open { display: flex; }
+  .review-lightbox-img {
+    max-width: 90vw; max-height: 82vh;
+    border-radius: 10px; object-fit: contain;
+    animation: fadeUp 0.2s ease;
+  }
+  .review-lightbox-close {
+    position: absolute; top: 16px; right: 20px;
+    width: 36px; height: 36px; border-radius: 50%;
+    background: rgba(255,255,255,0.15); border: none; cursor: pointer;
+    color: #fff; font-size: 18px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .review-lightbox-nav {
+    display: flex; gap: 12px; margin-top: 16px;
+  }
+  .review-nav-btn {
+    width: 40px; height: 40px; border-radius: 50%;
+    background: rgba(255,255,255,0.15); border: none; cursor: pointer;
+    color: #fff; font-size: 18px;
+    display: flex; align-items: center; justify-content: center;
+    transition: background 0.15s;
+  }
+  .review-nav-btn:hover { background: rgba(255,255,255,0.3); }
+  .review-lightbox-counter {
+    color: rgba(255,255,255,0.5); font-size: 12px;
+    letter-spacing: 1px; margin-top: 10px;
+  }
+
   .toast {
     position: fixed; bottom: 24px; left: 50%;
     transform: translateX(-50%) translateY(16px);
@@ -429,11 +515,7 @@ src="https://www.facebook.com/tr?id=1517308272696814&ev=PageView&noscript=1"
   <!-- LEFT COL: video only -->
   <div class="video-col">
     <div class="video-wrap">
-      <video src="" loop muted playsinline style="display:none"></video>
-      <div class="video-placeholder">
-        <div class="play-ring"><div class="play-tri"></div></div>
-        <div class="video-label">Brand Video</div>
-      </div>
+      <iframe src="https://player.vimeo.com/video/1188422903?title=0&byline=0&portrait=0&badge=0&player_id=0&app_id=58479" frameborder="0" allow="fullscreen; picture-in-picture; clipboard-write; encrypted-media" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe>
     </div>
   </div>
 
@@ -504,8 +586,8 @@ src="https://www.facebook.com/tr?id=1517308272696814&ev=PageView&noscript=1"
 
     <div class="form-group">
       <label>Phone Number — ফোন নম্বর</label>
-      <input type="tel" id="fieldPhone" placeholder="01X-XXXXXXXX" autocomplete="tel">
-      <div class="error-msg" id="errPhone">Please enter a valid phone number.</div>
+      <input type="tel" id="fieldPhone" placeholder="01XXXXXXXXX" autocomplete="tel" maxlength="11" inputmode="numeric">
+      <div class="error-msg" id="errPhone">Please enter a valid 11-digit Bangladeshi number (e.g. 01XXXXXXXXX).</div>
     </div>
 
     <div class="form-group">
@@ -616,6 +698,38 @@ src="https://www.facebook.com/tr?id=1517308272696814&ev=PageView&noscript=1"
       </div>
     </div>
 
+  </div><!-- end faq-block -->
+
+  <!-- CUSTOMER REVIEWS -->
+  <div class="reviews-block">
+    <div class="reviews-title">Customer Reviews</div>
+    <div class="reviews-sub">Real messages from our customers 💬</div>
+    <div class="reviews-grid">
+      <div class="review-thumb" onclick="openReview(0)">
+        <img src="reviews/review1.jpg" alt="Customer review" onerror="this.parentElement.style.display='none'">
+        <div class="review-thumb-overlay"><div class="review-zoom-icon">🔍</div></div>
+      </div>
+      <div class="review-thumb" onclick="openReview(1)">
+        <img src="reviews/review2.jpg" alt="Customer review" onerror="this.parentElement.style.display='none'">
+        <div class="review-thumb-overlay"><div class="review-zoom-icon">🔍</div></div>
+      </div>
+      <div class="review-thumb" onclick="openReview(2)">
+        <img src="reviews/review3.jpg" alt="Customer review" onerror="this.parentElement.style.display='none'">
+        <div class="review-thumb-overlay"><div class="review-zoom-icon">🔍</div></div>
+      </div>
+      <div class="review-thumb" onclick="openReview(3)">
+        <img src="reviews/review4.jpg" alt="Customer review" onerror="this.parentElement.style.display='none'">
+        <div class="review-thumb-overlay"><div class="review-zoom-icon">🔍</div></div>
+      </div>
+      <div class="review-thumb" onclick="openReview(4)">
+        <img src="reviews/review5.jpg" alt="Customer review" onerror="this.parentElement.style.display='none'">
+        <div class="review-thumb-overlay"><div class="review-zoom-icon">🔍</div></div>
+      </div>
+      <div class="review-thumb" onclick="openReview(5)">
+        <img src="reviews/review6.jpg" alt="Customer review" onerror="this.parentElement.style.display='none'">
+        <div class="review-thumb-overlay"><div class="review-zoom-icon">🔍</div></div>
+      </div>
+    </div>
   </div>
 
   </div><!-- end content-col -->
@@ -641,6 +755,17 @@ src="https://www.facebook.com/tr?id=1517308272696814&ev=PageView&noscript=1"
       <button class="popup-select-btn" id="popupSelectBtn" onclick="selectFromPopup()">Select This Fragrance</button>
     </div>
   </div>
+</div>
+
+<!-- REVIEW LIGHTBOX -->
+<div class="review-lightbox" id="reviewLightbox" onclick="closeReviewOnBg(event)">
+  <button class="review-lightbox-close" onclick="closeReview()">✕</button>
+  <img class="review-lightbox-img" id="reviewLightboxImg" src="" alt="Customer review">
+  <div class="review-lightbox-nav">
+    <button class="review-nav-btn" onclick="prevReview()">‹</button>
+    <button class="review-nav-btn" onclick="nextReview()">›</button>
+  </div>
+  <div class="review-lightbox-counter" id="reviewCounter"></div>
 </div>
 
 <div class="toast" id="toast"></div>
@@ -801,7 +926,9 @@ function submitOrder() {
   const phone = document.getElementById('fieldPhone').value.trim();
   const address = document.getElementById('fieldAddress').value.trim();
   if (!name)                       { showErr('fieldName',    'errName');    valid = false; } else clearErr('fieldName',    'errName');
-  if (!phone || phone.length < 10) { showErr('fieldPhone',   'errPhone');   valid = false; } else clearErr('fieldPhone',   'errPhone');
+  const phoneClean = phone.replace(/\D/g, '');
+  const phoneValid = phoneClean.length === 11 && phoneClean.startsWith('01');
+  if (!phoneValid) { showErr('fieldPhone', 'errPhone'); valid = false; } else clearErr('fieldPhone', 'errPhone');
   if (!selectedDistrict)           { document.getElementById('errDistrict').classList.add('show'); valid = false; }
   else                               document.getElementById('errDistrict').classList.remove('show');
   if (!address)                    { showErr('fieldAddress', 'errAddress'); valid = false; } else clearErr('fieldAddress', 'errAddress');
@@ -827,6 +954,56 @@ function submitOrder() {
 
 function showErr(fId, eId) { document.getElementById(fId).classList.add('error'); document.getElementById(eId).classList.add('show'); }
 function clearErr(fId, eId) { document.getElementById(fId).classList.remove('error'); document.getElementById(eId).classList.remove('show'); }
+
+// ── Phone number formatting ──
+document.getElementById('fieldPhone').addEventListener('input', function() {
+  this.value = this.value.replace(/[^0-9]/g, '').slice(0, 11);
+});
+
+// ── Review lightbox ──
+const REVIEW_IMAGES = [
+  'reviews/review1.jpg',
+  'reviews/review2.jpg',
+  'reviews/review3.jpg',
+  'reviews/review4.jpg',
+  'reviews/review5.jpg',
+  'reviews/review6.jpg'
+];
+let currentReview = 0;
+
+function openReview(idx) {
+  currentReview = idx;
+  updateLightboxImg();
+  document.getElementById('reviewLightbox').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeReview() {
+  document.getElementById('reviewLightbox').classList.remove('open');
+  document.body.style.overflow = '';
+}
+function closeReviewOnBg(e) {
+  if (e.target === document.getElementById('reviewLightbox')) closeReview();
+}
+function nextReview() {
+  currentReview = (currentReview + 1) % REVIEW_IMAGES.length;
+  updateLightboxImg();
+}
+function prevReview() {
+  currentReview = (currentReview - 1 + REVIEW_IMAGES.length) % REVIEW_IMAGES.length;
+  updateLightboxImg();
+}
+function updateLightboxImg() {
+  document.getElementById('reviewLightboxImg').src = REVIEW_IMAGES[currentReview];
+  document.getElementById('reviewCounter').textContent = (currentReview + 1) + ' / ' + REVIEW_IMAGES.length;
+}
+
+// Keyboard navigation for review lightbox
+document.addEventListener('keydown', function(e) {
+  if (!document.getElementById('reviewLightbox').classList.contains('open')) return;
+  if (e.key === 'ArrowRight') nextReview();
+  if (e.key === 'ArrowLeft') prevReview();
+  if (e.key === 'Escape') closeReview();
+});
 
 renderGrid();
 updateSlots();
